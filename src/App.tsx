@@ -7,10 +7,12 @@ import { User } from 'firebase/auth';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -41,7 +43,11 @@ function App() {
       </header>
 
       <section>
-        {user ? <ChatRoom user={user} /> : <SignIn />}
+        {loading ? (
+          <p>Carregando...</p>
+        ) : (
+          user ? <ChatRoom user={user} /> : <SignIn />
+        )}
       </section>
     </>
   );
