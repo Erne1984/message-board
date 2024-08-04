@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signOut, auth } from './services/firebase';
+import { createUserWithEmailAndPassword, onAuthStateChanged, auth } from './services/firebase';
 import { SignIn } from './components/SignIn/SignIn';
 import { ChatRoom } from './components/ChatRoom/ChatRoom';
 import { User } from 'firebase/auth';
@@ -27,22 +27,12 @@ function App() {
     }
   }
 
-  const signOutFirebase = async () => {
-    try {
-      await signOut(auth);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+
 
   return (
     <>
-      <header>
-        <button onClick={createUserFirebase}>Criar Usuário</button>
-        <button onClick={signOutFirebase}>Deslogar</button>
-      </header>
 
-      <section>
+      <section className='app-section'>
         {loading ? (
           <p>Carregando...</p>
         ) : (

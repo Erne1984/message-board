@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'firebase/auth';
 
+import Header from '../Header/Header';
+
 interface ChatRoomProps {
     user: User | null;
 }
@@ -59,24 +61,46 @@ function ChatRoom({ user }: ChatRoomProps) {
     };
 
     return (
-        <>
-            <h3>Chat Room</h3>
-            <section className="container-messages">
-                {messages.map((message, index) => (
-                    <div key={index} className={`message-${message.userId === user?.uid ? 'sent' : 'received'}`}>
-                        <img src={message.userPhotoURL} alt={`${message.userName}'s profile`} className="profile-pic" />
-                        <strong>{message.userName}</strong>: {message.content}
-                        <span>{message.timestamp.toLocaleTimeString()}</span>
-                    </div>
-                ))}
-            </section>
+        <div className='container-chatRoom'>
+
+            <div>
+                <Header />
+                <section className="container-messages">
+                    {messages.map((message, index) => (
+                        <div key={index} className={`message-${message.userId === user?.uid ? 'sent' : 'received'}`}>
+
+                            <div className='message'>
+
+                                <div className='message-header'>
+
+                                    <div className='user-box'>
+                                        <img src={message.userPhotoURL} alt={`${message.userName}'s profile`} className="profile-pic" />
+
+                                        <span className='username' >{message.userName}</span>
+                                    </div>
+
+
+                                    <small className='created-at'>{message.timestamp.toLocaleTimeString()}</small>
+
+                                </div>
+
+                                <p className='content'>{message.content}</p>
+
+                            </div>
+
+                        </div>
+                    ))}
+                </section>
+            </div>
+
             <div className="message-box">
                 <input type="text" ref={msgRef} />
-                <span onClick={handleAddMessage}>
+                <span className='icon' onClick={handleAddMessage}>
                     <FontAwesomeIcon icon={faPaperPlane} />
                 </span>
             </div>
-        </>
+
+        </div>
     );
 }
 

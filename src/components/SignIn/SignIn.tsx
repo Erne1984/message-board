@@ -1,3 +1,4 @@
+import './SignIn.css';
 import { GoogleAuthProvider, signInWithPopup, auth } from "../../services/firebase";
 
 function SignIn() {
@@ -11,7 +12,10 @@ function SignIn() {
     }
 
     return (
-        <button onClick={signInWithGoogle}>Sign In With Google</button>
+        <section className="btn-box">
+            <button onClick={signInWithGoogle}>Sign In With Google</button>
+        </section>
+
     );
 }
 
