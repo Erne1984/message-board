@@ -13,7 +13,7 @@ export default function Header(){
     
     return(
         <header>
-            <h2>Chat Room</h2>
+            <h2>Message Board</h2>
 
             <button onClick={signOutFirebase}>Deslogar</button>
         </header>

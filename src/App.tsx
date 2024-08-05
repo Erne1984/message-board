@@ -1,9 +1,10 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { createUserWithEmailAndPassword, onAuthStateChanged, auth } from './services/firebase';
+import { onAuthStateChanged, auth } from './services/firebase';
 import { SignIn } from './components/SignIn/SignIn';
 import { ChatRoom } from './components/ChatRoom/ChatRoom';
 import { User } from 'firebase/auth';
+import Header from './components/Header/Header';
 
 function App() {
   const [user, setUser] = useState<User | null>(null);
@@ -18,21 +19,13 @@ function App() {
     return () => unsubscribe();
   }, []);
 
-  const createUserFirebase = async () => {
-    try {
-      await createUserWithEmailAndPassword(auth, "teste@gmail.com", "123456");
-      console.log("Usuário criado com sucesso!");
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-
-
   return (
     <>
 
       <section className='app-section'>
+
+        {user ? <Header/> : <></>}
+
         {loading ? (
           <p>Carregando...</p>
         ) : (

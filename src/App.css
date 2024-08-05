@@ -13,6 +13,9 @@ body {
 }
 
 .app-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   border-radius: 10px;
   background-color: #191F2D;
   min-height: 600px;

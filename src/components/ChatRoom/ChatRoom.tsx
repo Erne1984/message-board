@@ -7,8 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import { User } from 'firebase/auth';
 
-import Header from '../Header/Header';
-
 interface ChatRoomProps {
     user: User | null;
 }
@@ -63,8 +61,9 @@ function ChatRoom({ user }: ChatRoomProps) {
     return (
         <div className='container-chatRoom'>
 
-            <div>
-                <Header />
+
+            <div className='messages-container-box'>
+
                 <section className="container-messages">
                     {messages.map((message, index) => (
                         <div key={index} className={`message-${message.userId === user?.uid ? 'sent' : 'received'}`}>
